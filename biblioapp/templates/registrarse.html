@@ -1,0 +1,56 @@
+{%load static%}
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Biblioteca crud | Registrarse</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.2/css/bulma.min.css"> <!-- Incluye el archivo CSS -->
+</head>
+<body>
+
+    <div class="container">
+    
+    <p class="title is-1 is-spaced">Biblioteca</p>
+    <p class="subtitle is-3">Registrarse</p>
+    
+    <form action={%url 'registrarse'%} method="POST" class="box">
+    {% csrf_token %}
+
+    <div class="field">
+        <label class="label">Nombre de usuario</label>
+        <div class="control has-icons-left">
+            <input class="input" type="username" name="username" placeholder="Nombre de usuario">
+            <span class="icon is-small is-left">
+              <i class="fas fa-user"></i>
+            </span>
+        </div>
+    </div>
+
+    <div class="field">
+        <label class="label">Email</label>
+        <div class="control has-icons-left">
+            <input class="input" type="email" name="email" placeholder="Email">
+            <span class="icon is-small is-left">
+                <i class="fas fa-envelope"></i>
+            </span>
+        </div>
+    </div>
+
+    <div class="field">
+        <label class="label">Contraseña</label>
+        <div class="control has-icons-left">
+            <input class="input" type="password" name="password" placeholder="Contraseña">
+            <span class="icon is-small is-left">
+                <i class="fas fa-lock"></i>
+            </span>
+        </div>
+        
+    </div>
+    
+    <input class="button is-primary" type="submit" value="Enviar" />
+    </form>
+    </div>
+</body>
+</html>

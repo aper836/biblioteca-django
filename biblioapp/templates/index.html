@@ -1,0 +1,95 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Biblioteca crud</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.2/css/bulma.min.css"> <!-- Incluye el archivo CSS -->
+</head>
+<body>
+    <nav class="navbar" role="navigation" aria-label="main navigation">
+        <h1 class="navbar-item">
+            <p class="title is-2">
+            Biblioteca
+            </p>
+        </h1>
+
+
+        <div class="navbar-end">
+            <div class="navbar-item">
+            {% if user.is_authenticated %}
+                <p>Bienvenido <a href="{% url 'perfil'%}">{{ user.username }}</a></p>    
+                <div class="buttons">
+                    <a class="button is-light"
+                    href= "{% url 'salir' %}?next={{curpath}}">
+                    <strong>Salir</strong>
+                    </a>
+                </div>            
+            {% else %}
+                <div class="buttons">
+                    <a class="button is-primary"
+                    href = "{% url 'registrarse' %}">
+                    <strong>Registrarse</strong>
+                    </a>
+                    <a class="button is-light" href="{% url 'ingresar' %}" >
+                    Ingresar
+                    </a>
+                </div>  
+            {% endif %}
+            </div>
+        </div>
+    </nav>
+
+    {% if libros %}
+
+    <div class="fixed-grid has-4-cols">
+    <div class="grid">
+    {% for libro in libros %}
+    <div class="cell">
+        <div class="card">
+            <div class="card-image">
+                <figure class="image is-3by5">
+                    <img
+                      src="{{ libro.portada }}"
+                      alt="Placeholder image"
+                    />
+                  </figure>
+            </div>
+
+            <header class="card-header">
+            <p class="card-header-title"> {{ libro.nombre }} </p>
+            </header>
+
+            <div class="content">
+                Lorem ipsum leo risus, porta ac consectetur ac, vestibulum at eros. Donec
+                id elit non mi porta gravida at eget metus. Cum sociis natoque penatibus
+                et magnis dis parturient montes, nascetur ridiculus mus. Cras mattis
+                consectetur purus sit amet fermentum.
+            </div>
+            {% if not libro.id in obtenidos %}
+            <div class="card-footer">
+
+                <form action="{% url 'index' %}" method="post">
+                        {% csrf_token %}
+                        <input type="hidden" name="libro_id" value="{{libro.id}}"/>
+                        <button class="button">Prestar</button>
+                </form> 
+            </div>
+            {% else %}
+            <div class="card-footer">
+                <p>Prestado</p>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+    {% endfor %}
+    </div>
+    </div>
+
+    {% else %}
+        <p>No hay libros.</p>
+    {% endif %}
+</body>
+</html>
+

@@ -1,0 +1,4 @@
+db.sqlite3
+biblio/__pycache__
+biblioapp/migrations
+biblioapp/__pycache__

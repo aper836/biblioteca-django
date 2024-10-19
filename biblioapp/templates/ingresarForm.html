@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Biblioteca crud | Ingresar</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.2/css/bulma.min.css"> <!-- Incluye el archivo CSS -->
+</head>
+<body>
+    <form action={%url 'ingresar'%} method="POST">
+    {% csrf_token %}
+
+    <div class="field">
+        <label class="label">Email</label>
+        <span class="icon is-small is-left">
+            <i class="fas fa-envelope"></i>
+        </span>
+        <div class="control">
+            <input class="input" type="username" name="username">
+        </div>
+    </div>
+
+    <div class="field">
+        <p class="control has-icons-left">
+          <input class="input" type="password" name="password" placeholder="Password">
+          <span class="icon is-small is-left">
+            <i class="fas fa-lock"></i>
+          </span>
+        </p>
+    </div>
+    
+    <input class="button is-primary" type="submit" value="Enviar" />
+
+    </form>
+</body>
+</html>
+

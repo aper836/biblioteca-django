@@ -1,0 +1,56 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Biblioteca crud</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.2/css/bulma.min.css"> <!-- Incluye el archivo CSS -->
+</head>
+<body>
+    <h1 class="title">Hola {{ user.username}}! <h1>
+    <div class="columns">
+        <div class="column is-one-fifth">
+            <aside class="menu">
+                <p class="menu-label">
+                    General
+                </p>
+                <ul class="menu-list">
+                    <li><a class="is-active">Libros</a></li>
+                </ul>
+                <p class="menu-label">
+                    Administración
+                </p>
+                <ul class="menu-list">
+                    <li><a>Cambiar contraseña</a></li>
+                    <li><a>Cerrar sesion</a></li>
+                </ul>
+            </aside>
+        </div>
+        <div class="column is-narrow">
+            <div class="box">
+                <h2 class="title">Libros en posecion</h2>
+
+                <table class="table">
+                    <thead>
+                        <th><abbr title="Portada">Portada</abbr></th>
+                        <th><abbr title="Titulo">Titulo</abbr></th>
+                        <th><abbr title="Autor">Autor</abbr></th>
+                    </thead>
+                    <tbody>
+                        {% for libro in libros %}
+                        <tr>
+                        <td><img class="image is-4by5" width="128px" height="496px" src="{{libro.portada}}"></td>
+                        <td><p>{{libro.nombre}}</p></td>
+                        <td><p>{{libro.autor}}</p></td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+                
+            </div>
+        </div>
+    </div>
+    
+</body>
+</html>
